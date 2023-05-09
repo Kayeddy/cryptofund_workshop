@@ -13,12 +13,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserByEmail(String email);
 
     @Transactional
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("update User u set u.password = :newPassword where u.userId = :userId")
     void updateUserPassword(@Param("newPassword") String newPassword, @Param("userId") Long userId);
 
     @Transactional
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("update User u set u.walletAddress = :newWalletAddress where u.userId = :userId")
     void updateUserWalletAddress(@Param("newWalletAddress") String newWalletAddress, @Param("userId") Long userId);
 }

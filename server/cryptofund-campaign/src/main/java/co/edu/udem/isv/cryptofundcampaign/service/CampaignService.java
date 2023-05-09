@@ -1,7 +1,7 @@
 package co.edu.udem.isv.cryptofundcampaign.service;
 
-import co.edu.udem.isv.cryptofundcampaign.repository.CampaignRepository;
 import co.edu.udem.isv.cryptofundcampaign.model.Campaign;
+import co.edu.udem.isv.cryptofundcampaign.repository.CampaignRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +33,6 @@ public class CampaignService {
     }
 
     @Transactional
-    public void deleteCampaign(Long campaignId) {
-        campaignRepository.deleteById(campaignId);
-    }
-
-    @Transactional
     public void updateCampaignDetails(Long campaignId, Campaign campaign) {
         campaignRepository.updateCampaignDetails(
                 campaign.getDescription(),
@@ -46,4 +41,10 @@ public class CampaignService {
                 campaignId
         );
     }
+
+    @Transactional
+    public void deleteCampaign(Long campaignId) {
+        campaignRepository.deleteById(campaignId);
+    }
+
 }

@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public void updateUserWalletAddress(String newWalletAddress, Long id) {
-        userRepository.updateUserPassword(newWalletAddress, id);
+        userRepository.updateUserWalletAddress(newWalletAddress, id);
     }
 
     public void deleteUser(Long id) {

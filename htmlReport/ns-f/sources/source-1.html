@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CampaignRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">co.edu.udem.isv.cryptofundcampaign.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: CampaignRepository (co.edu.udem.isv.cryptofundcampaign.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">CampaignRepository$MockitoMock$40hGjX7K</td>
+  </tr>
+  <tr>
+    <td class="name">CampaignRepository$MockitoMock$40hGjX7K$auxiliary$7IYaSupG</td>
+  </tr>
+  <tr>
+    <td class="name">CampaignRepository$MockitoMock$40hGjX7K$auxiliary$S2mzJJf9</td>
+  </tr>
+  <tr>
+    <td class="name">CampaignRepository$MockitoMock$40hGjX7K$auxiliary$XqrUjq7z</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package co.edu.udem.isv.cryptofundcampaign.repository;
+&nbsp;
+&nbsp;import co.edu.udem.isv.cryptofundcampaign.model.Campaign;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.data.jpa.repository.Modifying;
+&nbsp;import org.springframework.data.jpa.repository.Query;
+&nbsp;import org.springframework.data.repository.query.Param;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.time.LocalDate;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Repository
+&nbsp;public interface CampaignRepository extends JpaRepository&lt;Campaign, Long&gt; {
+&nbsp;    Optional&lt;Campaign&gt; findCampaignByUserId(Long userId);
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    @Modifying(clearAutomatically = true)
+&nbsp;    @Query(&quot;update Campaign c set c.status = :newStatus where c.campaignId = :campaignId&quot;)
+&nbsp;    void updateCampaignStatus(@Param(&quot;newStatus&quot;) Boolean newStatus, @Param(&quot;campaignId&quot;) Long campaignId);
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    @Modifying(clearAutomatically = true)
+&nbsp;    @Query(&quot;update Campaign c set c.description = :newDescription, c.goal = :newGoal, c.deadline = :newDeadline where c.campaignId = :campaignId&quot;)
+&nbsp;    void updateCampaignDetails(@Param(&quot;newDescription&quot;) String newDescription,
+&nbsp;                               @Param(&quot;newGoal&quot;) Double newGoal,
+&nbsp;                               @Param(&quot;newDeadline&quot;) LocalDate newDeadline,
+&nbsp;                               @Param(&quot;campaignId&quot;) Long campaignId
+&nbsp;    );
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-09 01:01</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">co.edu.udem.isv.cryptofunduser.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: UserController (co.edu.udem.isv.cryptofunduser.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package co.edu.udem.isv.cryptofunduser.controller;
+&nbsp;
+&nbsp;import co.edu.udem.isv.cryptofunduser.model.User;
+&nbsp;import co.edu.udem.isv.cryptofunduser.service.UserService;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/users&quot;)
+&nbsp;public class UserController {
+&nbsp;    private final UserService userService;
+&nbsp;
+<b class="fc">&nbsp;    public UserController(UserService userService) {</b>
+<b class="fc">&nbsp;        this.userService = userService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;/post&quot;)
+&nbsp;    public User postUser(@RequestBody User user) {
+<b class="fc">&nbsp;        return this.userService.saveUser(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/get/{id}&quot;)
+&nbsp;    public Optional&lt;User&gt; findUserById(@PathVariable Long id) {
+<b class="fc">&nbsp;        return this.userService.findUserById(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(value = &quot;/get&quot;, params = &quot;email&quot;)
+&nbsp;    public Optional&lt;User&gt; findUserByEmail(@RequestParam String email) {
+<b class="fc">&nbsp;        return this.userService.findUserByEmail(email);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(&quot;/put/{id}&quot;)
+&nbsp;    public void putUserPassword(@RequestBody User user, @PathVariable Long id) {
+<b class="fc">&nbsp;        this.userService.updateUserPassword(user, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(value = &quot;/put/{id}&quot;, params = &quot;walletAddress&quot;)
+&nbsp;    public void putUserWalletAddress(@RequestParam String walletAddress, @PathVariable Long id) {
+<b class="fc">&nbsp;        this.userService.updateUserWalletAddress(walletAddress, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public void deleteUser(@PathVariable Long id) {
+<b class="fc">&nbsp;        this.userService.deleteUser(id);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-09 01:01</div>
+</div>
+</body>
+</html>
