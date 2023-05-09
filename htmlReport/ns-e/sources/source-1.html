@@ -1,0 +1,103 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">co.edu.udem.isv.cryptofunduser.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: UserRepository (co.edu.udem.isv.cryptofunduser.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">UserRepository$MockitoMock$v5F52KXQ</td>
+  </tr>
+  <tr>
+    <td class="name">UserRepository$MockitoMock$v5F52KXQ$auxiliary$SHF1rtF4</td>
+  </tr>
+  <tr>
+    <td class="name">UserRepository$MockitoMock$v5F52KXQ$auxiliary$VSsF5fhT</td>
+  </tr>
+  <tr>
+    <td class="name">UserRepository$MockitoMock$v5F52KXQ$auxiliary$YQSKDD6j</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package co.edu.udem.isv.cryptofunduser.repository;
+&nbsp;
+&nbsp;import co.edu.udem.isv.cryptofunduser.model.User;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.data.jpa.repository.Modifying;
+&nbsp;import org.springframework.data.jpa.repository.Query;
+&nbsp;import org.springframework.data.repository.query.Param;
+&nbsp;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;public interface UserRepository extends JpaRepository&lt;User, Long&gt; {
+&nbsp;    Optional&lt;User&gt; findUserByEmail(String email);
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    @Modifying(clearAutomatically = true)
+&nbsp;    @Query(&quot;update User u set u.password = :newPassword where u.userId = :userId&quot;)
+&nbsp;    void updateUserPassword(@Param(&quot;newPassword&quot;) String newPassword, @Param(&quot;userId&quot;) Long userId);
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    @Modifying(clearAutomatically = true)
+&nbsp;    @Query(&quot;update User u set u.walletAddress = :newWalletAddress where u.userId = :userId&quot;)
+&nbsp;    void updateUserWalletAddress(@Param(&quot;newWalletAddress&quot;) String newWalletAddress, @Param(&quot;userId&quot;) Long userId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-09 01:01</div>
+</div>
+</body>
+</html>

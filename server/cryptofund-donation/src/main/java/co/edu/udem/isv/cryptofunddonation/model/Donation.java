@@ -1,14 +1,19 @@
 package co.edu.udem.isv.cryptofunddonation.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "donations")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +26,4 @@ public class Donation {
     private Double amount;
 
     private LocalDate donationDate = LocalDate.now();
-
-    public Donation() {
-    }
-
-    public Donation(Long donationId, Long userId, Long campaignId, Double amount) {
-        this.donationId = donationId;
-        this.userId = userId;
-        this.campaignId = campaignId;
-        this.amount = amount;
-    }
 }

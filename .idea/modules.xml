@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/server/cryptofund-campaign/cryptofund-campaign.iml" filepath="$PROJECT_DIR$/server/cryptofund-campaign/cryptofund-campaign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/cryptofund-donation/cryptofund-donation.iml" filepath="$PROJECT_DIR$/server/cryptofund-donation/cryptofund-donation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/cryptofund-user/cryptofund-user.iml" filepath="$PROJECT_DIR$/server/cryptofund-user/cryptofund-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/cryptofund_workshop.iml" filepath="$PROJECT_DIR$/.idea/cryptofund_workshop.iml" />
+    </modules>
+  </component>
+</project>

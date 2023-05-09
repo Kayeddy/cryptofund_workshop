@@ -1,13 +1,19 @@
 package co.edu.udem.isv.cryptofundcampaign.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "campaigns")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +25,10 @@ public class Campaign {
 
     private Double goal;
 
-    private Date deadline;
+    private LocalDate deadline;
 
     private Boolean status = false;
 
     private Long userId;
 
-    public Campaign() {
-    }
 }
