@@ -29,6 +29,10 @@ public class UserService {
         return userRepository.findUserByEmail(email);
     }
 
+    public Optional<User> findUserByEmailAndPassword(String email, String password) {
+        return userRepository.findUserByEmailAndPassword(email, password);
+    }
+
     public void updateUserPassword(User user, Long id) {
         userRepository.updateUserPassword(user.getPassword(), id);
     }

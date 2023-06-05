@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -28,6 +29,11 @@ public class UserController {
     @GetMapping(value = "/get", params = "email")
     public Optional<User> findUserByEmail(@RequestParam String email) {
         return this.userService.findUserByEmail(email);
+    }
+
+    @PostMapping(value = "/get/login")
+    public Optional<User> findUserByEmailAndPassword(@RequestBody User user) {
+        return this.userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 
     @PutMapping("/put/{id}")

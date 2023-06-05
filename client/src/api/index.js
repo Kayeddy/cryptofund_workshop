@@ -1,7 +1,7 @@
 export const authHandler = () => {
   const addUser = async (userData) => {
     try {
-      const response = await fetch("localhost:8083/api/users/post", {
+      const response = await fetch("http://localhost:8083/api/users/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -18,8 +18,8 @@ export const authHandler = () => {
 
   const logIn = async (userData) => {
     try {
-      const response = await fetch("localhost:8083/api/users/get/login", {
-        method: "GET",
+      const response = await fetch("http://localhost:8083/api/users/get/login", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

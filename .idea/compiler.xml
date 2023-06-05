@@ -7,16 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="cryptofund-user" />
         <module name="cryptofund-donation" />
+        <module name="cryptofund-user" />
         <module name="cryptofund-campaign" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="cryptofund-campaign" target="17" />
-      <module name="cryptofund-donation" target="17" />
-      <module name="cryptofund-user" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

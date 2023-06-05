@@ -26,7 +26,7 @@ const Authentication = () => {
         password: password,
       };
 
-      addUser(userData);
+      logIn(userData);
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
@@ -42,7 +42,7 @@ const Authentication = () => {
         password: password,
       };
 
-      logIn(userData);
+      addUser(userData);
     }
   };
 
