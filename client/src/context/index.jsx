@@ -75,13 +75,18 @@ export const StateContextProvider = ({ children }) => {
   const authenticateUser = async (type, data) => {
     try {
       await connectMetamask();
-      data.walletAddress = metamaskAddress;
+      const modifiedData = data;
+      modifiedData.walletAdress = metamaskAddress;
+      console.log(
+        "Here is the modified data (with the wallet address) that will be stored in the database",
+        modifiedData
+      );
 
       if (type === "login") {
-        user = await logIn(data);
+        user = await logIn(modifiedData);
         console.log("login successful");
       } else {
-        user = await addUser(data);
+        user = await addUser(modifiedData);
         console.log("signup successful");
       }
       console.log(user);
