@@ -95,5 +95,6 @@ export const authHandler = () => {
     logIn,
     addCampaignToDatabase,
     retrieveCampaigns,
+    donateToCampaign,
   };
 };

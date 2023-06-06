@@ -29,8 +29,13 @@ export const StateContextProvider = ({ children }) => {
     "createCampaign"
   );
 
-  const { addUser, logIn, addCampaignToDatabase, retrieveCampaigns } =
-    authHandler();
+  const {
+    addUser,
+    logIn,
+    addCampaignToDatabase,
+    retrieveCampaigns,
+    donateToCampaign: campaignDonation,
+  } = authHandler();
 
   const address = useAddress();
   const connect = useMetamask();
@@ -126,6 +131,16 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  const donateToCampaignInDatabase = async (donationData) => {
+    try {
+      const donation = await campaignDonation(donationData);
+      console.log("Campaign donation info", donation);
+      return donation;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
@@ -211,6 +226,7 @@ export const StateContextProvider = ({ children }) => {
         connect,
         getCampaigns,
         getCampaignsFromDatabase,
+        donateToCampaignInDatabase,
         createCampaign: publishCampaign,
         saveCampaignToDatabase,
         authenticateUser,
