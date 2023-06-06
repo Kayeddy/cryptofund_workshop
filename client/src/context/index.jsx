@@ -12,7 +12,7 @@ import { authHandler } from "../api";
 
 const StateContext = createContext();
 
-let user = {};
+let userProfile = {};
 
 export const StateContextProvider = ({ children }) => {
   // States
@@ -84,12 +84,17 @@ export const StateContextProvider = ({ children }) => {
 
       if (type === "login") {
         user = await logIn(modifiedData);
-        console.log("login successful");
+        user
+          ? console.log("login successful")
+          : console.log("could not proceed with authentication");
       } else {
         user = await addUser(modifiedData);
-        console.log("signup successful");
+        user
+          ? console.log("signup successful")
+          : console.log("could not proceed with authentication");
       }
       console.log(user);
+      userProfile = user;
       return Promise.resolve(user);
     } catch (error) {
       console.log(`${type} failed: ${error}`);
@@ -176,7 +181,7 @@ export const StateContextProvider = ({ children }) => {
       value={{
         address,
         contract,
-        user,
+        userProfile,
         connect,
         getCampaigns,
         createCampaign: publishCampaign,

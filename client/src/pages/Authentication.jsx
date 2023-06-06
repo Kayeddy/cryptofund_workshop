@@ -30,8 +30,8 @@ const Authentication = () => {
         walletAddress: "",
       };
       authenticateUser(active, userData)
-        .then(() => {
-          navigate("/home");
+        .then((user) => {
+          user ? navigate("/home") : console.log("Error");
         })
         .catch((error) => {
           // handle error
@@ -54,8 +54,8 @@ const Authentication = () => {
       };
 
       authenticateUser(active, userData)
-        .then(() => {
-          navigate("/home");
+        .then((user) => {
+          user ? navigate("/home") : console.log("Error");
         })
         .catch((error) => {
           // handle error
