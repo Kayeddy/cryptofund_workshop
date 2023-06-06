@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [active, setActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const { connect, address, user } = useStateContext();
+  const { connect, address, userProfile } = useStateContext();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
 
       <div className="sm:flex hidden justify-end gap-4 text-white text-lg">
-        Welcome, {user ? user.name : "Guest"}
+        Welcome, {userProfile ? userProfile.name : "Guest"}
       </div>
 
       {/* Small screens navigation */}
