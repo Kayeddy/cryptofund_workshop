@@ -81,13 +81,14 @@ export const StateContextProvider = ({ children }) => {
 
       if (type === "login") {
         user = await logIn(modifiedData);
-        console.log("log in succesfull");
+        user ? console.log("Log in succesful") : console.log("Log in failed");
       } else {
         user = await addUser(modifiedData);
-        console.log("signup successful");
+        user ? console.log("Signup succesful") : console.log("Signup failed");
       }
 
       userProfile = user;
+      console.log("The current user is: ", user);
       return user;
     } catch (error) {
       console.log(`${type} failed: ${error}`);
