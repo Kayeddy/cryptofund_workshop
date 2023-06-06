@@ -76,7 +76,7 @@ export const StateContextProvider = ({ children }) => {
     try {
       await connectMetamask();
       const modifiedData = data;
-      modifiedData.walletAdress = metamaskAddress;
+      modifiedData.walletAddress = metamaskAddress;
       console.log(
         "Here is the modified data (with the wallet address) that will be stored in the database",
         modifiedData
