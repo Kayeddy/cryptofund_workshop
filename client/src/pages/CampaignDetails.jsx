@@ -41,6 +41,7 @@ const CampaignDetails = () => {
 
   useEffect(() => {
     const donatorsData = fetchDonators();
+    console.log("Donators data printed from use effect", donatorsData);
     setDonators(donatorsData);
   }, []);
 
