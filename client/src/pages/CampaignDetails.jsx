@@ -96,15 +96,15 @@ const CampaignDetails = () => {
 
             <div className="mt-[20px] flex flex-col gap-4">
               {donators.length > 0 ? (
-                donators.map((item, index) => {
+                donators.map((item, index) => (
                   <div
                     key={index}
                     className="flex flex-col items-start justify-start gap-2 border-b-[1px] border-white"
                   >
                     <p>Donated by: {item.userId}</p>
                     <p>Amount Donated: {item.amount}</p>
-                  </div>;
-                })
+                  </div>
+                ))
               ) : (
                 <p className="font-epilogue font-normal text-[16px] text-[#808191] leading-[26px] text-justify">
                   No donators yet
