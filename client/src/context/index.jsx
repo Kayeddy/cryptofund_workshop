@@ -94,7 +94,7 @@ export const StateContextProvider = ({ children }) => {
         user ? console.log("Signup succesful") : console.log("Signup failed");
       }
       userProfile.current = user;
-      console.log("The name of the person is", userProfile.current.name);
+      console.log("This is the user from context", user)
       return user;
     } catch (error) {
       console.log(`${type} failed: ${error}`);

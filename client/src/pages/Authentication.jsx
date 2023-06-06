@@ -47,7 +47,8 @@ const Authentication = () => {
         walletAddress: "",
       };
 
-      authenticateUser(active, userData);
+      const user = await authenticateUser(active, userData);
+      user ? navigate("/home") : console.log("No user found");
     }
   };
 

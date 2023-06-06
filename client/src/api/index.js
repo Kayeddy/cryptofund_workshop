@@ -9,7 +9,8 @@ export const authHandler = () => {
         body: JSON.stringify(userData),
       });
       const data = await response.json();
-      console.log(data);
+      console.log("The data is: ", data);
+      return data
     } catch (error) {
       console.error(error);
       throw error;

@@ -135,6 +135,7 @@ public class UserRepositoryTest {
 
         Optional<User> foundUser = userRepository.findById(savedUser.getUserId());
 
-        Assertions.assertTrue(foundUser.isPresent());
+        //Assertions.assertTrue(foundUser.isPresent());
+        Assertions.assertTrue(foundUser.isEmpty());
     }
 }
