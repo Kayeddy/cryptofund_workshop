@@ -34,7 +34,7 @@ const CampaignDetails = () => {
     console.log(donation);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     const fetchDonators = async () => {
       const donatorsData = await retrieveCampaignDonators(state.campaignId);
       console.log("Donators data printed from use effect", donatorsData);
