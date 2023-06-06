@@ -30,6 +30,7 @@ export const authHandler = () => {
       );
       const data = await response.json();
       console.log("The data is: ", data);
+      return data;
     } catch (error) {
       console.error(error);
       throw error;
