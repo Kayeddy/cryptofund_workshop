@@ -106,7 +106,7 @@ export const StateContextProvider = ({ children }) => {
         userId: form.userId,
       };
 
-      const campaign = await addCampaignToDatabase(database);
+      const campaign = await addCampaignToDatabase(databaseData);
       return campaign;
     } catch (error) {
       console.log(error);
