@@ -31,7 +31,7 @@ public class UserRepositoryTest {
         User savedUser = userRepository.save(user);
 
         Assertions.assertNotNull(savedUser);
-        Assertions.assertTrue(savedUser.getUserId() > 0);
+        Assertions.assertEquals(2, (long) savedUser.getUserId());
     }
 
     @Test
