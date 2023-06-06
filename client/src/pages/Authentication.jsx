@@ -30,8 +30,8 @@ const Authentication = () => {
         walletAddress: "",
       };
       authenticateUser(active, userData)
-        .then((user) => {
-          user ? navigate("/home") : alert("Invalid credentials");
+        .then(() => {
+          navigate("/home");
         })
         .catch((error) => {
           // handle error
@@ -54,10 +54,8 @@ const Authentication = () => {
       };
 
       authenticateUser(active, userData)
-        .then((user) => {
-          user
-            ? navigate("/home")
-            : alert("There was a problem creating your account");
+        .then(() => {
+          navigate("/home");
         })
         .catch((error) => {
           // handle error

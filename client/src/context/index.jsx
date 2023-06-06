@@ -17,7 +17,6 @@ let user = {};
 export const StateContextProvider = ({ children }) => {
   // States
   const [provider, setProvider] = useState(null);
-  const [metamaskAddress, setMetamaskAddress] = useState(null);
   const metaAdress = useRef("");
 
   // Hooks and other required data
