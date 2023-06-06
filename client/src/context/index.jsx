@@ -28,7 +28,6 @@ export const StateContextProvider = ({ children }) => {
   const { addUser, logIn } = authHandler();
 
   const address = useAddress();
-  setWalletAddress(address);
   const connect = useMetamask();
 
   let user = null;
@@ -37,7 +36,7 @@ export const StateContextProvider = ({ children }) => {
 
   const authenticateUser = async (type, data) => {
     try {
-      await connect();
+      await connect().then(setWalletAddress(address));
 
       if (walletAddress) {
         data.walletAddress = walletAddress;
