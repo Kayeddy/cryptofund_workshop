@@ -2,11 +2,14 @@ import React, { useState, useRef } from "react";
 import { CustomButton } from "../components";
 import { useStateContext } from "../context";
 import { authHandler } from "../api";
+import { useNavigate } from "react-router-dom";
 
 const Authentication = () => {
   const [active, setActive] = useState("login");
   const { connect, address } = useStateContext();
   const { addUser, logIn } = authHandler();
+  const { authenticateUser } = useStateContext();
+  const navigate = useNavigate();
 
   const loginEmailRef = useRef(null);
   const loginPasswordRef = useRef(null);
@@ -25,8 +28,14 @@ const Authentication = () => {
         email: email,
         password: password,
       };
-
-      addUser(userData);
+      authenticateUser(active, userData)
+        .then((user) => {
+          user ? navigate("/home") : alert("Invalid credentials");
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
@@ -42,7 +51,16 @@ const Authentication = () => {
         password: password,
       };
 
-      logIn(userData);
+      authenticateUser(active, userData)
+        .then((user) => {
+          user
+            ? navigate("/home")
+            : alert("There was a problem creating your account");
+        })
+        .catch((error) => {
+          // handle error
+          console.log(error);
+        });
     }
   };
 

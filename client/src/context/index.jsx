@@ -7,9 +7,12 @@ import {
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 
+import { authHandler } from "../api";
+
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
+  // Hooks and other required data
   const { contract } = useContract(
     "0x2DA65c65065bEf5Cd21dc532501cE0473A6dEaa5"
   );
@@ -19,9 +22,36 @@ export const StateContextProvider = ({ children }) => {
     "createCampaign"
   );
 
+  const { addUser, logIn } = authHandler();
+
   const address = useAddress();
   const connect = useMetamask();
 
+  let user = null;
+
+  // User interaction methods
+
+  const authenticateUser = async (type, data) => {
+    try {
+      await connect();
+      data.walletAddress = address;
+
+      if (type === "login") {
+        user = await logIn(data);
+        console.log("login successful");
+      } else {
+        user = await addUser(data);
+        console.log("signup successful");
+      }
+      console.log(user);
+      return Promise.resolve(user);
+    } catch (error) {
+      console.log(`${type} failed: ${error}`);
+      return Promise.reject(error);
+    }
+  };
+
+  // Campaign interaction methods
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
@@ -100,9 +130,11 @@ export const StateContextProvider = ({ children }) => {
       value={{
         address,
         contract,
+        user,
         connect,
         getCampaigns,
         createCampaign: publishCampaign,
+        authenticateUser,
       }}
     >
       {children}

@@ -11,7 +11,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [active, setActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-  const { connect, address } = useStateContext();
+  const { connect, address, user } = useStateContext();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -30,29 +30,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="sm:flex hidden flex-row justify-end gap-4">
-        <CustomButton
-          type="button"
-          title={address ? "Create a campaign" : "Connect wallet"}
-          styles={`min-h-[52px] ${address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}`}
-          handleClick={() => {
-            if (address) {
-              navigate("create-campaign");
-            } else {
-              connect();
-            }
-          }}
-        />
-
-        <Link to="/profile">
-          <div className="w-[52px] h-[52px] rounded-full bg-[#2c2f32] flex justify-center items-center cursor-pointer">
-            <img
-              src={thirdweb}
-              alt="user profile"
-              className="w-[60%] h-[60%] object-contain"
-            />
-          </div>
-        </Link>
+      <div className="sm:flex hidden justify-end gap-4">
+        Welcome, {user ? user.name : "Guest"}
       </div>
 
       {/* Small screens navigation */}
@@ -111,22 +90,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="flex mx-4">
-            <CustomButton
-              type="button"
-              title={address ? "Create a campaign" : "Connect wallet"}
-              styles={`min-h-[42px] ${
-                address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"
-              }`}
-              handleClick={() => {
-                if (address) {
-                  navigate("create-campaign");
-                } else {
-                  connect();
-                }
-              }}
-            />
-          </div>
+          <div className="flex mx-4"></div>
         </div>
       </div>
     </div>
