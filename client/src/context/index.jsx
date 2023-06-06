@@ -98,11 +98,12 @@ export const StateContextProvider = ({ children }) => {
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
-        address, //address of the person who is creating the campaign
+        metaAdress.current, //address of the person who is creating the campaign
         form.title, //title of the campaign
         form.description, //description of the campaign
-        form.target, //target fund raise amount of the campaign
-        new Date(form.deadline).getTime(), //deadline for raising funds for the campaign
+        form.goal, //target fund raise amount of the campaign
+        form.userId,
+        form.deadline, //deadline for raising funds for the campaign
         form.image, //image representative of the campaign
       ]);
       console.log("Contract call success", data);

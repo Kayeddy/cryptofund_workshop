@@ -10,14 +10,15 @@ import { useStateContext } from "../context";
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
-  const { createCampaign } = useStateContext();
+  const { createCampaign, userProfile } = useStateContext();
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    username: "",
+    username: userProfile.current.name,
     title: "",
     description: "",
-    target: "",
+    goal: "",
+    userId: userProfile.current.userId,
     deadline: "",
     image: "",
   });
@@ -59,14 +60,7 @@ const CreateCampaign = () => {
         className="w-full mt-[65px] flex flex-col gap-[30px]"
         onSubmit={handleSubmit}
       >
-        <div className="flex flex-wrap gap-[40px]">
-          <FormField
-            labelName="Your name *"
-            placeholder="John Doe"
-            inputType="text"
-            value={form.username}
-            handleChange={(e) => handleFormFieldCchange("username", e)}
-          />
+        <div className="flex items-start justify-start">
           <FormField
             labelName="Campaign title *"
             placeholder="My first startup"
@@ -100,13 +94,13 @@ const CreateCampaign = () => {
             labelName="Goal *"
             placeholder="ETH 0.50"
             inputType="text"
-            value={form.target}
+            value={form.goal}
             handleChange={(e) => handleFormFieldCchange("target", e)}
           />
           <FormField
             labelName="End date *"
             placeholder="Select date"
-            inputType="date"
+            inputType="text"
             value={form.deadline}
             handleChange={(e) => handleFormFieldCchange("deadline", e)}
           />

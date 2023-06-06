@@ -6,8 +6,9 @@ contract Cryptofund {
         address owner;
         string title;
         string description;
-        uint256 target;
-        uint256 deadline;
+        uint256 goal;
+        uint256 userId;
+        string deadline;
         uint256 amountCollected;
         string image;
         address[] donators;
@@ -18,17 +19,15 @@ contract Cryptofund {
 
     uint256 public campaignCount = 0;
 
-    function createCampaign(address _owner, string memory _title, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public returns(uint256){
+    function createCampaign(address _owner, string memory _title, string memory _description, uint256 goal, uint256 userId, string memory _deadline,  string memory _image) public returns(uint256){
         Campaign storage campaign = campaigns[campaignCount];
-
-        require(campaign.deadline < block.timestamp, "The deadline must be a future date");
 
         campaign.owner = _owner;
         campaign.title = _title;
         campaign.description = _description;
-        campaign.target = _target;
+        campaign.goal = goal;
+        campaign.userId = userId;
         campaign.deadline = _deadline;
-
         campaign.amountCollected = 0;
         campaign.image = _image;
 
@@ -37,15 +36,15 @@ contract Cryptofund {
         return campaignCount - 1;
     }
 
-    function editCampaign(uint256 _id, string memory _title, string memory _description, uint256 _target, uint256 _deadline, string memory _image) public {
+    function editCampaign(uint256 _id, string memory _title, string memory _description, uint256 goal, string memory _deadline, string memory _image) public {
         Campaign storage campaign = campaigns[_id];
 
         require(msg.sender == campaign.owner, "Only the campaign owner can edit the campaign");
-        require(campaign.deadline > block.timestamp, "Cannot edit a campaign with a past deadline");
 
         campaign.title = _title;
         campaign.description = _description;
-        campaign.target = _target;
+        campaign.goal = goal;
+
         campaign.deadline = _deadline;
         campaign.image = _image;
     }
