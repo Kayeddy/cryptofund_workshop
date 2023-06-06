@@ -131,7 +131,7 @@ const CampaignDetails = () => {
                 type="button"
                 title="Fund campaign"
                 styles="w-full bg-[#8c6dfd] py-4 mt-[20px]"
-                onClick={handleDonation}
+                handleClick={handleDonation}
               />
             </div>
           </div>
