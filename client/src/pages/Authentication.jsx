@@ -29,7 +29,8 @@ const Authentication = () => {
         password: password,
         walletAddress: "",
       };
-      authenticateUser(active, userData);
+      const user = authenticateUser(active, userData);
+      console.log("Current user: ", user);
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
