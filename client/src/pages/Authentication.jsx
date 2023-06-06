@@ -8,7 +8,7 @@ const Authentication = () => {
   const [active, setActive] = useState("login");
   const { connect, address } = useStateContext();
   const { addUser, logIn } = authHandler();
-  const { authenticateUser, user } = useStateContext();
+  const { authenticateUser, userProfile } = useStateContext();
   const navigate = useNavigate();
 
   const loginEmailRef = useRef(null);
@@ -30,7 +30,7 @@ const Authentication = () => {
         walletAddress: "",
       };
       const user = await authenticateUser(active, userData);
-      console.log("lalalalal: ", user);
+      user ? navigate("/home") : console.log("No user found");
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
