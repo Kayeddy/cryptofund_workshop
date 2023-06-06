@@ -96,7 +96,7 @@ const CreateCampaign = () => {
             placeholder="ETH 0.50"
             inputType="text"
             value={form.goal}
-            handleChange={(e) => handleFormFieldCchange("target", e)}
+            handleChange={(e) => handleFormFieldCchange("goal", e)}
           />
           <FormField
             labelName="End date *"
