@@ -28,7 +28,7 @@ export const authHandler = () => {
           body: JSON.stringify(userData),
         }
       );
-      const data = response.json();
+      const data = await response.json();
       console.log("The data is: ", data);
     } catch (error) {
       console.error(error);
