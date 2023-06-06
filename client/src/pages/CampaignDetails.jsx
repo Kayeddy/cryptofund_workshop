@@ -39,8 +39,8 @@ const CampaignDetails = () => {
     return donatorsData;
   };
 
-  useEffect(() => {
-    const donatorsData = fetchDonators();
+  useEffect(async () => {
+    const donatorsData = await fetchDonators();
     console.log("Donators data printed from use effect", donatorsData);
     setDonators(donatorsData);
   }, []);
