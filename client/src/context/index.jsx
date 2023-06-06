@@ -81,6 +81,7 @@ export const StateContextProvider = ({ children }) => {
         "Here is the modified data (with the wallet address) that will be stored in the database",
         modifiedData
       );
+      let user;
 
       if (type === "login") {
         user = await logIn(modifiedData);
