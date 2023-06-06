@@ -72,14 +72,14 @@ export const authHandler = () => {
     }
   };
 
-  const donateToCampaign = async (data) => {
+  const donateToCampaign = async (donationData) => {
     try {
       const response = await fetch("http://localhost:8082/api/donations/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(donationData),
       });
       const data = await response.json();
       console.log("Donation information", data);
