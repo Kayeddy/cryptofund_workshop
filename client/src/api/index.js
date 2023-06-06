@@ -72,6 +72,24 @@ export const authHandler = () => {
     }
   };
 
+  const donateToCampaign = async (data) => {
+    try {
+      const response = await fetch("http://localhost:8082/api/donations/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const data = await response.json();
+      console.log("Donation information", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
   return {
     addUser,
     logIn,

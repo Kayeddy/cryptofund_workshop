@@ -34,6 +34,7 @@ const CreateCampaign = () => {
           ...form,
         });
         setLoading(false);
+        navigate("/dashboard");
       } else {
         alert("Please provide a valid image url");
         setForm({ ...form, image: "" });
