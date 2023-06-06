@@ -19,7 +19,7 @@ const Authentication = () => {
   const registrationAboutRef = useRef(null);
   const registrationPasswordRef = useRef(null);
 
-  const authenticate = () => {
+  const authenticate = async () => {
     if (active === "login") {
       const email = loginEmailRef.current.value;
       const password = loginPasswordRef.current.value;
@@ -29,14 +29,9 @@ const Authentication = () => {
         password: password,
         walletAddress: "",
       };
-      authenticateUser(active, userData)
-        .then((user) => {
-          user ? navigate("/home") : console.log("Error");
-        })
-        .catch((error) => {
-          // handle error
-          console.log(error);
-        });
+      const authenticatedUser = await authenticateUser(active, userData);
+
+      authenticatedUser ? navigate("/home") : console.log("Error");
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
@@ -53,14 +48,9 @@ const Authentication = () => {
         walletAddress: "",
       };
 
-      authenticateUser(active, userData)
-        .then((user) => {
-          user ? navigate("/home") : console.log("Error");
-        })
-        .catch((error) => {
-          // handle error
-          console.log(error);
-        });
+      const authenticatedUser = await authenticateUser(active, userData);
+
+      authenticatedUser ? navigate("/home") : console.log("Error");
     }
   };
 

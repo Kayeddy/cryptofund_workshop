@@ -77,26 +77,18 @@ export const StateContextProvider = ({ children }) => {
       await connectMetamask();
       const modifiedData = data;
       modifiedData.walletAddress = metaAdress.current;
-      console.log(
-        "Here is the modified data (with the wallet address) that will be stored in the database",
-        modifiedData
-      );
       let user;
 
       if (type === "login") {
         user = await logIn(modifiedData);
-        user
-          ? console.log("login successful")
-          : console.log("could not proceed with authentication");
+        console.log("log in succesfull");
       } else {
         user = await addUser(modifiedData);
-        user
-          ? console.log("signup successful")
-          : console.log("could not proceed with authentication");
+        console.log("signup successful");
       }
-      console.log(user);
+      console.log("The current user is: ", user);
       userProfile = user;
-      return Promise.resolve(user);
+      return user;
     } catch (error) {
       console.log(`${type} failed: ${error}`);
       return Promise.reject(error);
