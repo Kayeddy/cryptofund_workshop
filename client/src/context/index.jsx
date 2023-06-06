@@ -17,6 +17,7 @@ let user = {};
 export const StateContextProvider = ({ children }) => {
   // States
   const [provider, setProvider] = useState(null);
+  const [metamaskAddress, setMetamaskAddress] = useState(null);
 
   // Hooks and other required data
   const { contract } = useContract(
@@ -48,6 +49,7 @@ export const StateContextProvider = ({ children }) => {
           });
           console.log(accounts[0]); // This will log the user's account address.
           setProvider(provider);
+          setMetamaskAddress(accounts[0]);
 
           // Set up the listener for disconnects
           provider.on("accountsChanged", (accounts) => {
@@ -73,7 +75,7 @@ export const StateContextProvider = ({ children }) => {
   const authenticateUser = async (type, data) => {
     try {
       await connectMetamask();
-      data.walletAddress = provider;
+      data.walletAddress = metamaskAddress;
 
       if (type === "login") {
         user = await logIn(data);
