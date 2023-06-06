@@ -99,7 +99,7 @@ const CreateCampaign = () => {
           />
           <FormField
             labelName="End date *"
-            placeholder="Select date"
+            placeholder="Input a date"
             inputType="text"
             value={form.deadline}
             handleChange={(e) => handleFormFieldCchange("deadline", e)}
