@@ -10,6 +10,7 @@ const FundCard = ({
   goal,
   deadline,
   amountCollected,
+  userId,
   image,
   handleClick,
 }) => {
@@ -65,7 +66,7 @@ const FundCard = ({
             />
           </div>
           <p className="flex-1 font-epilogue font-normal text-[12px] text-[#808191] truncate">
-            Posted by: <span className="text-[#b2b3bd]">{owner}</span>
+            Posted by: <span className="text-[#b2b3bd]">{userId}</span>
           </p>
         </div>
       </div>
