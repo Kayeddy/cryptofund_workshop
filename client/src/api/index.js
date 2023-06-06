@@ -29,7 +29,7 @@ export const authHandler = () => {
         }
       );
       const data = response.json();
-      console.log(data);
+      console.log("The data is: ", data);
     } catch (error) {
       console.error(error);
       throw error;

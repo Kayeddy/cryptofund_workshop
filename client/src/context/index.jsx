@@ -86,7 +86,7 @@ export const StateContextProvider = ({ children }) => {
         user = await addUser(modifiedData);
         console.log("signup successful");
       }
-      console.log("The current user is: ", user);
+
       userProfile = user;
       return user;
     } catch (error) {
