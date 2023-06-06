@@ -18,15 +18,18 @@ export const authHandler = () => {
 
   const logIn = async (userData) => {
     try {
-      const response = await fetch("http://localhost:8083/api/users/get/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-      const data = await response.json();
-      console.log(data[0]);
+      const response = await fetch(
+        "http://localhost:8083/api/users/get/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
+      const data = response.json();
+      console.log(data);
     } catch (error) {
       console.error(error);
       throw error;

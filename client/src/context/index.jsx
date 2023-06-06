@@ -1,4 +1,4 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext, createContext, useState } from "react";
 import {
   useAddress,
   useContract,
@@ -12,6 +12,9 @@ import { authHandler } from "../api";
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
+  // States
+  const [walletAddress, setWalletAddress] = useState("");
+
   // Hooks and other required data
   const { contract } = useContract(
     "0x2DA65c65065bEf5Cd21dc532501cE0473A6dEaa5"
@@ -25,6 +28,7 @@ export const StateContextProvider = ({ children }) => {
   const { addUser, logIn } = authHandler();
 
   const address = useAddress();
+  setWalletAddress(address);
   const connect = useMetamask();
 
   let user = null;
@@ -34,17 +38,20 @@ export const StateContextProvider = ({ children }) => {
   const authenticateUser = async (type, data) => {
     try {
       await connect();
-      data.walletAddress = address;
 
-      if (type === "login") {
-        user = await logIn(data);
-        console.log("login successful");
-      } else {
-        user = await addUser(data);
-        console.log("signup successful");
+      if (walletAddress) {
+        data.walletAddress = walletAddress;
+
+        if (type === "login") {
+          user = await logIn(data);
+          console.log("login successful");
+        } else {
+          user = await addUser(data);
+          console.log("signup successful");
+        }
+        console.log(user);
+        return Promise.resolve(user);
       }
-      console.log(user);
-      return Promise.resolve(user);
     } catch (error) {
       console.log(`${type} failed: ${error}`);
       return Promise.reject(error);

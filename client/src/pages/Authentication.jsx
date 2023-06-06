@@ -8,7 +8,7 @@ const Authentication = () => {
   const [active, setActive] = useState("login");
   const { connect, address } = useStateContext();
   const { addUser, logIn } = authHandler();
-  const { authenticateUser } = useStateContext();
+  const { authenticateUser, user } = useStateContext();
   const navigate = useNavigate();
 
   const loginEmailRef = useRef(null);
@@ -29,8 +29,8 @@ const Authentication = () => {
         password: password,
       };
       authenticateUser(active, userData)
-        .then((user) => {
-          user ? navigate("/home") : alert("Invalid credentials");
+        .then(() => {
+          navigate("/home");
         })
         .catch((error) => {
           // handle error
@@ -52,10 +52,8 @@ const Authentication = () => {
       };
 
       authenticateUser(active, userData)
-        .then((user) => {
-          user
-            ? navigate("/home")
-            : alert("There was a problem creating your account");
+        .then(() => {
+          navigate("/home");
         })
         .catch((error) => {
           // handle error
