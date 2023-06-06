@@ -82,7 +82,26 @@ export const authHandler = () => {
         body: JSON.stringify(donationData),
       });
       const data = await response.json();
-      console.log("Donation information", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  const getCampaignDonators = async (campaignId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:8082/api/donations/get/campaign/${campaignId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log("Donation information by project", data);
       return data;
     } catch (error) {
       console.error(error);
@@ -96,5 +115,6 @@ export const authHandler = () => {
     addCampaignToDatabase,
     retrieveCampaigns,
     donateToCampaign,
+    getCampaignDonators,
   };
 };

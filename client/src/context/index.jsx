@@ -35,6 +35,7 @@ export const StateContextProvider = ({ children }) => {
     addCampaignToDatabase,
     retrieveCampaigns,
     donateToCampaign: campaignDonation,
+    getCampaignDonators,
   } = authHandler();
 
   const address = useAddress();
@@ -134,13 +135,24 @@ export const StateContextProvider = ({ children }) => {
   const donateToCampaignInDatabase = async (donationData) => {
     try {
       const donation = await campaignDonation(donationData);
-      console.log("Campaign donation info", donation);
       return donation;
     } catch (error) {
       console.log(error);
     }
   };
 
+  const retrieveCampaignDonators = async (campaignId) => {
+    try {
+      const campaignDonators = await getCampaignDonators(campaignId);
+      console.log(
+        "Here are the donators of the current campaign",
+        campaignDonators
+      );
+      return campaignDonators;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
@@ -230,6 +242,7 @@ export const StateContextProvider = ({ children }) => {
         createCampaign: publishCampaign,
         saveCampaignToDatabase,
         authenticateUser,
+        retrieveCampaignDonators,
       }}
     >
       {children}

@@ -15,6 +15,7 @@ const CampaignDetails = () => {
     address,
     userProfile,
     donateToCampaignInDatabase,
+    retrieveCampaignDonators,
   } = useStateContext();
 
   const [loading, setLoading] = useState(false);
@@ -32,6 +33,16 @@ const CampaignDetails = () => {
     const donation = await donateToCampaignInDatabase(donationData);
     console.log(donation);
   };
+
+  const fetchDonators = async () => {
+    const donatorsData = retrieveCampaignDonators(state.campaignId);
+    return donatorsData;
+  };
+
+  useEffect(() => {
+    const donatorsData = fetchDonators();
+    setDonators(donatorsData);
+  }, []);
 
   return (
     <div>
