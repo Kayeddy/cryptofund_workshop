@@ -31,7 +31,6 @@ const CreateCampaign = () => {
         setLoading(true);
         await saveCampaignToDatabase({
           ...form,
-          target: ethers.utils.parseUnits(form.target, 18),
         });
         setLoading(false);
       } else {
