@@ -27,6 +27,7 @@ const Authentication = () => {
       const userData = {
         email: email,
         password: password,
+        walletAddress: "",
       };
       authenticateUser(active, userData)
         .then((user) => {
@@ -49,6 +50,7 @@ const Authentication = () => {
         birthdate: birthdate,
         about: about,
         password: password,
+        walletAddress: "",
       };
 
       authenticateUser(active, userData)
