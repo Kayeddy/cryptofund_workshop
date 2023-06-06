@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useRef } from "react";
 import {
   useAddress,
   useContract,
@@ -18,6 +18,7 @@ export const StateContextProvider = ({ children }) => {
   // States
   const [provider, setProvider] = useState(null);
   const [metamaskAddress, setMetamaskAddress] = useState(null);
+  const metaAdress = useRef("");
 
   // Hooks and other required data
   const { contract } = useContract(
@@ -49,7 +50,7 @@ export const StateContextProvider = ({ children }) => {
           });
           console.log(accounts[0]); // This will log the user's account address.
           setProvider(provider);
-          setMetamaskAddress(accounts[0]);
+          metaAdress.current = accounts[0];
 
           // Set up the listener for disconnects
           provider.on("accountsChanged", (accounts) => {
@@ -76,7 +77,7 @@ export const StateContextProvider = ({ children }) => {
     try {
       await connectMetamask();
       const modifiedData = data;
-      modifiedData.walletAddress = metamaskAddress;
+      modifiedData.walletAddress = metaAdress.current;
       console.log(
         "Here is the modified data (with the wallet address) that will be stored in the database",
         modifiedData
