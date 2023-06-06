@@ -25,7 +25,7 @@ const CampaignDetails = () => {
       <div className="w-full flex md:flex-row flex-col mt-10 gap-[30px]">
         <div className="flex-1 flex-col">
           <img
-            src={state.image}
+            src="https://incyber.org/wp-content/uploads/2021/08/ARTICLE-CRYPTO-2-1.png"
             alt="campaign-image"
             className="w-full h-[410px] object-cover rounded-xl"
           />
@@ -59,7 +59,7 @@ const CampaignDetails = () => {
                   {state.owner}
                 </h4>
                 <p className="mt-[4px] font-epilogue font-normal text-[12px] text-[#808191]">
-                  10 campaigns
+                  {state.userId}
                 </p>
               </div>
             </div>

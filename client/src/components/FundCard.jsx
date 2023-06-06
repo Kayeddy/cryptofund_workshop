@@ -22,7 +22,7 @@ const FundCard = ({
       onClick={handleClick}
     >
       <img
-        src={image}
+        src="https://incyber.org/wp-content/uploads/2021/08/ARTICLE-CRYPTO-2-1.png"
         alt="campaign image"
         className="w-full h-[158px] object-cover rounded-[15px]"
       />
