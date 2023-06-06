@@ -21,7 +21,8 @@ const CreateCampaign = () => {
     goal: "",
     userId: userProfile.current.userId,
     deadline: "",
-    image: "",
+    image:
+      "https://thegivingblock.com/wp-content/uploads/2021/07/Learn-Crypto-The-Giving-Block.png",
   });
 
   const handleSubmit = async (e) => {
@@ -103,14 +104,6 @@ const CreateCampaign = () => {
             inputType="text"
             value={form.deadline}
             handleChange={(e) => handleFormFieldCchange("deadline", e)}
-          />
-
-          <FormField
-            labelName="image *"
-            placeholder="Paste image URL"
-            inputType="url"
-            value={form.image}
-            handleChange={(e) => handleFormFieldCchange("image", e)}
           />
 
           <div className="flex justify-center items-center mt-[40px] w-full">

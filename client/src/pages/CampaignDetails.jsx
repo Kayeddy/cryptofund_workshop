@@ -39,11 +39,6 @@ const CampaignDetails = () => {
             ></div>
           </div>
         </div>
-        <div className="flex md:w-[150px] w-full flex-wrap justify-center md:justify-between gap-[30px]">
-          <InfoBox title="Days left" value={remainingDays} />
-          <InfoBox title="Raised" value={state.amountCollected} />
-          <InfoBox title="Donators" value={donators.length} />
-        </div>
       </div>
       <div className="mt-[60px] flex lg:flex-row flex-col gap-5">
         <div className="flex-1 flex flex-col gap-[40px]">
