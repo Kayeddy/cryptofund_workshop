@@ -34,15 +34,13 @@ const CampaignDetails = () => {
     console.log(donation);
   };
 
-  const fetchDonators = async () => {
-    const donatorsData = await retrieveCampaignDonators(state.campaignId);
-    return donatorsData;
-  };
-
   useEffect(async () => {
-    const donatorsData = await fetchDonators();
-    console.log("Donators data printed from use effect", donatorsData);
-    setDonators(donatorsData);
+    const fetchDonators = async () => {
+      const donatorsData = await retrieveCampaignDonators(state.campaignId);
+      console.log("Donators data printed from use effect", donatorsData);
+      setDonators(donatorsData);
+    };
+    fetchDonators();
   }, []);
 
   return (
