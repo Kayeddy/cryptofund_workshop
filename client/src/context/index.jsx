@@ -6,14 +6,17 @@ import {
   useContractWrite,
 } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
+import detectEthereumProvider from "@metamask/detect-provider";
 
 import { authHandler } from "../api";
 
 const StateContext = createContext();
 
+let user = {};
+
 export const StateContextProvider = ({ children }) => {
   // States
-  const [walletAddress, setWalletAddress] = useState("");
+  const [provider, setProvider] = useState(null);
 
   // Hooks and other required data
   const { contract } = useContract(
@@ -30,27 +33,57 @@ export const StateContextProvider = ({ children }) => {
   const address = useAddress();
   const connect = useMetamask();
 
-  let user = null;
+  const connectMetamask = async () => {
+    const provider = await detectEthereumProvider();
+
+    if (provider) {
+      // Check if this is Metamask
+      if (provider.isMetaMask) {
+        console.log("MetaMask is installed!");
+
+        // Now we try to get the user account.
+        try {
+          const accounts = await provider.request({
+            method: "eth_requestAccounts",
+          });
+          console.log(accounts[0]); // This will log the user's account address.
+          setProvider(provider);
+
+          // Set up the listener for disconnects
+          provider.on("accountsChanged", (accounts) => {
+            if (!accounts.length) {
+              // User has disconnected their wallet
+              setProvider(null);
+              console.log("User has disconnected their wallet");
+              // Add your logic here
+            }
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    } else {
+      console.log("Please install MetaMask!");
+      window.open("https://metamask.io/download/", "_blank");
+    }
+  };
 
   // User interaction methods
 
   const authenticateUser = async (type, data) => {
     try {
-      await connect().then(setWalletAddress(address));
+      await connectMetamask();
+      data.walletAddress = provider;
 
-      if (walletAddress) {
-        data.walletAddress = walletAddress;
-
-        if (type === "login") {
-          user = await logIn(data);
-          console.log("login successful");
-        } else {
-          user = await addUser(data);
-          console.log("signup successful");
-        }
-        console.log(user);
-        return Promise.resolve(user);
+      if (type === "login") {
+        user = await logIn(data);
+        console.log("login successful");
+      } else {
+        user = await addUser(data);
+        console.log("signup successful");
       }
+      console.log(user);
+      return Promise.resolve(user);
     } catch (error) {
       console.log(`${type} failed: ${error}`);
       return Promise.reject(error);

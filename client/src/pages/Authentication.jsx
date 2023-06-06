@@ -29,8 +29,8 @@ const Authentication = () => {
         password: password,
       };
       authenticateUser(active, userData)
-        .then(() => {
-          navigate("/home");
+        .then((user) => {
+          user ? navigate("/home") : alert("Invalid credentials");
         })
         .catch((error) => {
           // handle error
@@ -52,8 +52,10 @@ const Authentication = () => {
       };
 
       authenticateUser(active, userData)
-        .then(() => {
-          navigate("/home");
+        .then((user) => {
+          user
+            ? navigate("/home")
+            : alert("There was a problem creating your account");
         })
         .catch((error) => {
           // handle error
