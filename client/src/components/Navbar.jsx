@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
 
       <div className="sm:flex hidden justify-end gap-4 text-white text-lg">
-        Welcome, {userProfile ? userProfile.name : "Guest"}
+        Welcome, {userProfile.current ? userProfile.current.name : "Guest"}
       </div>
 
       {/* Small screens navigation */}

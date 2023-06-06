@@ -12,12 +12,11 @@ import { authHandler } from "../api";
 
 const StateContext = createContext();
 
-let userProfile = {};
-
 export const StateContextProvider = ({ children }) => {
   // States
   const [provider, setProvider] = useState(null);
   const metaAdress = useRef("");
+  const userProfile = useRef({});
 
   // Hooks and other required data
   const { contract } = useContract(
@@ -86,7 +85,8 @@ export const StateContextProvider = ({ children }) => {
         user = await addUser(modifiedData);
         user ? console.log("Signup succesful") : console.log("Signup failed");
       }
-      userProfile = user;
+      userProfile.current = user;
+      console.log("The name of the person is", userProfile.current.name);
       return user;
     } catch (error) {
       console.log(`${type} failed: ${error}`);
