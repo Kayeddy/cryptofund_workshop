@@ -19,7 +19,7 @@ const Authentication = () => {
   const registrationAboutRef = useRef(null);
   const registrationPasswordRef = useRef(null);
 
-  const authenticate = () => {
+  const authenticate = async () => {
     if (active === "login") {
       const email = loginEmailRef.current.value;
       const password = loginPasswordRef.current.value;
@@ -29,8 +29,8 @@ const Authentication = () => {
         password: password,
         walletAddress: "",
       };
-      const user = authenticateUser(active, userData);
-      console.log("Current user: ", user);
+      const user = await authenticateUser(active, userData);
+      console.log("lalalalal: ", user);
     } else {
       const name = registrationNameRef.current.value;
       const email = registrationEmailRef.current.value;
