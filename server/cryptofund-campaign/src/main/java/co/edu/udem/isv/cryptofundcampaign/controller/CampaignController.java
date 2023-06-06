@@ -4,6 +4,7 @@ import co.edu.udem.isv.cryptofundcampaign.model.Campaign;
 import co.edu.udem.isv.cryptofundcampaign.service.CampaignService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +29,11 @@ public class CampaignController {
     @GetMapping("/get/user/{id}")
     public Optional<Campaign> getCampaignByUserId(@PathVariable Long id) {
         return this.campaignService.findCampaignByUserId(id);
+    }
+
+    @GetMapping("/get")
+    public List<Campaign> getAllCampaigns() {
+        return this.campaignService.findAllCampaigns();
     }
 
     @PutMapping(value = "/put/{id}", params = "status")

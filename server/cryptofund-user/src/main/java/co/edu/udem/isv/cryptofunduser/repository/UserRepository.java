@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findUserByEmail(String email);
 
+    Optional<User> findUserByEmailAndPassword(String email, String password);
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query("update User u set u.password = :newPassword where u.userId = :userId")

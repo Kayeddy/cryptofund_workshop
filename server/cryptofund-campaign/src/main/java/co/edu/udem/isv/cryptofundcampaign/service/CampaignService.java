@@ -5,6 +5,7 @@ import co.edu.udem.isv.cryptofundcampaign.repository.CampaignRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +29,10 @@ public class CampaignService {
         return campaignRepository.findCampaignByUserId(userId);
     }
 
+    public List<Campaign> findAllCampaigns() {
+        return campaignRepository.findAll();
+    }
+
     public void updateCampaignStatus(Boolean newStatus, Long campaignId) {
         campaignRepository.updateCampaignStatus(newStatus, campaignId);
     }
@@ -40,6 +45,7 @@ public class CampaignService {
                 campaign.getDeadline(),
                 campaignId
         );
+
     }
 
     @Transactional
