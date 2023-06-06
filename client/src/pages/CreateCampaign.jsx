@@ -10,7 +10,8 @@ import { useStateContext } from "../context";
 
 const CreateCampaign = () => {
   const navigate = useNavigate();
-  const { createCampaign, userProfile } = useStateContext();
+  const { createCampaign, userProfile, saveCampaignToDatabase } =
+    useStateContext();
 
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -28,7 +29,7 @@ const CreateCampaign = () => {
     checkIfImage(form.image, async (exists) => {
       if (exists) {
         setLoading(true);
-        await createCampaign({
+        await saveCampaignToDatabase({
           ...form,
           target: ethers.utils.parseUnits(form.target, 18),
         });

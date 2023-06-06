@@ -37,8 +37,27 @@ export const authHandler = () => {
     }
   };
 
+  const addCampaignToDatabase = async (campaign) => {
+    try {
+      const response = await fetch("http://localhost:8081/api/campaigns/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(campaign),
+      });
+      const data = await response.json();
+      console.log("The data is: ", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
   return {
     addUser,
     logIn,
+    addCampaignToDatabase,
   };
 };

@@ -28,7 +28,7 @@ export const StateContextProvider = ({ children }) => {
     "createCampaign"
   );
 
-  const { addUser, logIn } = authHandler();
+  const { addUser, logIn, addCampaignToDatabase } = authHandler();
 
   const address = useAddress();
   const connect = useMetamask();
@@ -95,6 +95,24 @@ export const StateContextProvider = ({ children }) => {
   };
 
   // Campaign interaction methods
+
+  const saveCampaignToDatabase = async (form) => {
+    try {
+      const databaseData = {
+        title: form.title,
+        description: form.description,
+        goal: form.goal,
+        deadline: form.deadline,
+        userId: form.userId,
+      };
+
+      const campaign = await addCampaignToDatabase(database);
+      return campaign;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const publishCampaign = async (form) => {
     try {
       const data = await createCampaign([
@@ -106,7 +124,9 @@ export const StateContextProvider = ({ children }) => {
         form.deadline, //deadline for raising funds for the campaign
         form.image, //image representative of the campaign
       ]);
+
       console.log("Contract call success", data);
+      console.log();
     } catch (error) {
       console.log("Contract call error", error);
     }
@@ -178,6 +198,7 @@ export const StateContextProvider = ({ children }) => {
         connect,
         getCampaigns,
         createCampaign: publishCampaign,
+        saveCampaignToDatabase,
         authenticateUser,
       }}
     >
