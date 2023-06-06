@@ -17,6 +17,7 @@ export const StateContextProvider = ({ children }) => {
   const [provider, setProvider] = useState(null);
   const metaAdress = useRef("");
   const userProfile = useRef({});
+  const retrievedCampaigns = useRef([]);
 
   // Hooks and other required data
   const { contract } = useContract(
@@ -28,7 +29,8 @@ export const StateContextProvider = ({ children }) => {
     "createCampaign"
   );
 
-  const { addUser, logIn, addCampaignToDatabase } = authHandler();
+  const { addUser, logIn, addCampaignToDatabase, retrieveCampaigns } =
+    authHandler();
 
   const address = useAddress();
   const connect = useMetamask();
@@ -108,6 +110,17 @@ export const StateContextProvider = ({ children }) => {
 
       const campaign = await addCampaignToDatabase(databaseData);
       return campaign;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCampaignsFromDatabase = async () => {
+    try {
+      const campaigns = await retrieveCampaigns();
+      console.log("Campaigns that will be displayed ", campaigns);
+      retrievedCampaigns.current = campaigns;
+      return campaigns;
     } catch (error) {
       console.log(error);
     }
@@ -197,6 +210,7 @@ export const StateContextProvider = ({ children }) => {
         userProfile,
         connect,
         getCampaigns,
+        getCampaignsFromDatabase,
         createCampaign: publishCampaign,
         saveCampaignToDatabase,
         authenticateUser,

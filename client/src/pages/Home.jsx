@@ -8,11 +8,12 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [campaigns, setCampaigns] = useState([]);
 
-  const { address, contract, getCampaigns } = useStateContext();
+  const { address, contract, getCampaigns, getCampaignsFromDatabase } =
+    useStateContext();
 
   const fetchCampaigns = async () => {
     setLoading(true);
-    const campaigns = await getCampaigns();
+    const campaigns = await getCampaignsFromDatabase();
     setCampaigns(campaigns);
     setLoading(false);
   };

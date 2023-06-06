@@ -55,9 +55,27 @@ export const authHandler = () => {
     }
   };
 
+  const retrieveCampaigns = async () => {
+    try {
+      const response = await fetch("http://localhost:8081/api/campaigns/get", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      console.log("Retrieved campaigns from database: ", data);
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
   return {
     addUser,
     logIn,
     addCampaignToDatabase,
+    retrieveCampaigns,
   };
 };
