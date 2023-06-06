@@ -99,10 +99,14 @@ const CampaignDetails = () => {
                 donators.map((item, index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-start justify-start gap-2 border-b-[1px] border-white"
+                    className="flex flex-col items-start justify-start gap-2 border-b-[1px] border-white p-2 w-[70%]"
                   >
-                    <p>Donated by: {item.userId}</p>
-                    <p>Amount Donated: {item.amount}</p>
+                    <p className="text-white text-lg font-serif">
+                      Donated by: {item.userId}
+                    </p>
+                    <p className="text-white text-lg font-serif">
+                      Amount Donated: {item.amount}
+                    </p>
                   </div>
                 ))
               ) : (
