@@ -21,8 +21,8 @@ const Authentication = () => {
 
   const authenticate = () => {
     if (active === "login") {
-      const email = loginEmailRef.current;
-      const password = loginPasswordRef.current;
+      const email = loginEmailRef.current.value;
+      const password = loginPasswordRef.current.value;
 
       const userData = {
         email: email,
