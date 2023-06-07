@@ -4,6 +4,7 @@
 La plataforma de crowdfunding CryptoFund es una plataforma descentralizada que permite a los usuarios crear, administrar e invertir en campañas de crowdfunding utilizando criptomonedas. La plataforma está construida sobre la tecnología blockchain y aprovecha los contratos inteligentes para automatizar el proceso de crowdfunding y asegurar que los términos de la campaña se ejecuten según lo acordado. La plataforma está diseñada para ser fácil de usar y accesible para un público amplio, al mismo tiempo que ofrece características avanzadas para inversores y creadores de proyectos experimentados.
 
 ## Diagrama de arquitectura
+![](https://github.com/Kayeddy/cryptofund_workshop/blob/development/Arquitectura%20Taller.jpg)
 
 ## Descripción de funcionalidades
 ### Módulo campañas: 
